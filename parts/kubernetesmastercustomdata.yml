@@ -94,7 +94,7 @@ write_files:
             command: 
               - "/hyperkube"
               - "apiserver"
-              - "--admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,ResourceQuota"
+              - "--admission-control=AlwaysAdmit"
               - "--address=0.0.0.0"
               - "--allow-privileged"
               - "--insecure-port=8080"
@@ -107,6 +107,7 @@ write_files:
               - "--tls-private-key-file=/etc/kubernetes/certs/apiserver.key"
               - "--client-ca-file=/etc/kubernetes/certs/ca.crt"
               - "--service-account-key-file=/etc/kubernetes/certs/apiserver.key"
+              - "--feature-gates=AllAlpha"
               - "--v=4"
             volumeMounts:
               - name: "etc-kubernetes"

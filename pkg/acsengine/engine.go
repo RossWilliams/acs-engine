@@ -13,7 +13,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/Azure/acs-engine/pkg/api"
+	"github.com/RossWilliams/acs-engine/pkg/api"
 	"github.com/ghodss/yaml"
 )
 

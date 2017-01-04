@@ -3,8 +3,8 @@ package api
 import (
 	neturl "net/url"
 
-	"github.com/Azure/acs-engine/pkg/api/v20160330"
-	"github.com/Azure/acs-engine/pkg/api/vlabs"
+	"github.com/RossWilliams/acs-engine/pkg/api/v20160330"
+	"github.com/RossWilliams/acs-engine/pkg/api/vlabs"
 )
 
 // TypeMeta describes an individual API model object

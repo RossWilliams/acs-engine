@@ -94,7 +94,7 @@ write_files:
             command: 
               - "/hyperkube"
               - "apiserver"
-              - "--admission-control=AlwaysAdmit"
+              - "--admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,ResourceQuota"
               - "--address=0.0.0.0"
               - "--allow-privileged"
               - "--insecure-port=8080"

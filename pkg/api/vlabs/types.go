@@ -118,6 +118,8 @@ type MasterProfile struct {
 	VMSize                   string `json:"vmSize"`
 	VnetSubnetID             string `json:"vnetSubnetID,omitempty"`
 	FirstConsecutiveStaticIP string `json:"firstConsecutiveStaticIP,omitempty"`
+	StorageProfile           string `json:"storageProfile,omitempty"`
+
 	// subnet is internal
 	subnet string
 
@@ -126,6 +128,9 @@ type MasterProfile struct {
 	// Not used during PUT, returned as part of GET
 	FQDN string `json:"fqdn,omitempty"`
 }
+
+// ClassicAgentPoolProfileType represents types of classic profiles
+type ClassicAgentPoolProfileType string
 
 // AgentPoolProfile represents an agent pool definition
 type AgentPoolProfile struct {
@@ -139,6 +144,7 @@ type AgentPoolProfile struct {
 	StorageProfile      string `json:"storageProfile"`
 	DiskSizesGB         []int  `json:"diskSizesGB,omitempty"`
 	VnetSubnetID        string `json:"vnetSubnetID,omitempty"`
+
 	// subnet is internal
 	subnet string
 
@@ -175,8 +181,8 @@ type OrchestratorType string
 type OSType string
 
 // HasWindows returns true if the cluster contains windows
-func (a *Properties) HasWindows() bool {
-	for _, agentPoolProfile := range a.AgentPoolProfiles {
+func (p *Properties) HasWindows() bool {
+	for _, agentPoolProfile := range p.AgentPoolProfiles {
 		if agentPoolProfile.OSType == Windows {
 			return true
 		}
@@ -231,7 +237,7 @@ func (a *AgentPoolProfile) IsManagedDisks() bool {
 
 // IsStorageAccount returns true if the customer specified storage account
 func (a *AgentPoolProfile) IsStorageAccount() bool {
-	return a.StorageProfile == StorageAccount
+	return a.StorageProfile == StorageAccountClassic || a.StorageProfile == StorageAccount
 }
 
 // HasDisks returns true if the customer specified disks
